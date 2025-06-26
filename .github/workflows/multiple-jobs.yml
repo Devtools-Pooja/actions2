@@ -1,0 +1,61 @@
+name: CI/CD Pipeline with Shared dragon.txt
+
+on:
+  push
+
+jobs:
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install cowsay
+        run: sudo apt-get update && sudo apt-get install -y cowsay
+
+      - name: Create dragon.txt
+        run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" > dragon.txt
+
+      - name: Upload dragon.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: dragon-artifact
+          path: dragon.txt
+
+  test:
+    name: Test Job
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download dragon.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: dragon-artifact
+
+      - name: Test contents of dragon.txt
+        run: |
+          echo "Checking if 'dragon' is in the file..."
+          grep -i "dragon" dragon.txt
+          cat dragon.txt
+
+  deploy:
+    name: Deploy Job
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download dragon.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: dragon-artifact
+
+      - name: Deploy using dragon.txt
+        run: |
+          echo "Simulating deployment with dragon.txt..."
+          cat dragon.txt
