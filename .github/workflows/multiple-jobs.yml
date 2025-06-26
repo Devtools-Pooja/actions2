@@ -1,4 +1,4 @@
-name: CI/CD Pipeline with Shared dragon.txt
+name: Multiple Jobs Action
 
 on:
   push
