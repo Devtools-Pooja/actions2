@@ -1,8 +1,9 @@
 name: Trigger workflow
 
-on:   
-  schedule:
-    - cron: "*/2 * * * *"
+on: 
+  workflow_dispatch:   
+#   schedule:
+#     - cron: "*/2 * * * *"
 
 
 env:
