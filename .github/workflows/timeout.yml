@@ -1,9 +1,6 @@
 name: concurrency job
 
-on: 
-  push    
-#   schedule:
-#     - cron: "*/2 * * * *"
+on: push    
 
 
 env:
@@ -34,4 +31,4 @@ jobs:
         timeout-minutes: 1 
         run: |
          echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
-         sleep 700s
+         sleep 7000s
