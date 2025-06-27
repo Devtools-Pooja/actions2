@@ -1,7 +1,7 @@
 name: concurrency job
 
 on: 
-  push:     
+  push    
 #   schedule:
 #     - cron: "*/2 * * * *"
 
