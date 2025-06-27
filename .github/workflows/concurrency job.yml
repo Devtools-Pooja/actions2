@@ -1,4 +1,4 @@
-name: Trigger workflow
+name: concurrency job
 
 on: 
   workflow_dispatch:   
