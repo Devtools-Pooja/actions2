@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-      - '!feature/*'
+      - '!sub'
 
   pull_request:
     types:
