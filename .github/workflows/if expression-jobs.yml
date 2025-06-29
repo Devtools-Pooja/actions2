@@ -21,6 +21,7 @@ jobs:
         run: echo docker push $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: docker
     concurrency: 
       group: Production-deployment
@@ -30,4 +31,4 @@ jobs:
       - name: Docker Run
         run: |
          echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/${{ vars.DOCKER_USERNAME }}/$IMAGE_NAME:latest
-         sleep 70s
+         sleep 70
