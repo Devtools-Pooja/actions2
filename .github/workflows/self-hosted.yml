@@ -1,0 +1,14 @@
+name: Self hosted
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  first_job:
+    runs-on: [self-hosted, linux, prod]
+
+    steps:
+      - name: Echo command
+        run: |
+          echo "my first action"
+          sleep 15s
